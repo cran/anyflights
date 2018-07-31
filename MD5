@@ -1,0 +1,16 @@
+b7856371128349438d3b5e78fe81a402 *DESCRIPTION
+264d13a9a4fe2333670c9f13eecdaabd *NAMESPACE
+fdbee78806c57325c7d48c9d0a09b0fa *R/anyflights.R
+6c9eb479a709f5ee55148c1aaf155af1 *R/anyflights_description.R
+f7af026a13fe38f937aa3b12c09dfc97 *R/get_airlines.R
+f02c32bd31c759c77123045e5c0d861f *R/get_airports.R
+696e0c2182abad1cee91cf72d6adb9a0 *R/get_flights.R
+e2bb81bc97953ce21a59aa52415d9de8 *R/get_planes.R
+89c39c57f9e665911beccafc2c4ba5e9 *R/get_weather.R
+9b072364c913cfffefe00cbaeffb7289 *README.md
+374e6b492e1a23018fcb8cd602ba014e *man/anyflights.Rd
+f88f45593aca149619fa49b389317a4e *man/anyflights_description.Rd
+5c9e1efa0613e88dbe562b1eee06dde5 *man/get_airlines.Rd
+c6b0bcd00161212198980ca0712ae4be *man/get_airports.Rd
+4eb1cc139e5dd9ae6699227ebebd7570 *man/get_flights.Rd
+379f37a5482c8fe79e0c55f606e85804 *man/get_weather.Rd
