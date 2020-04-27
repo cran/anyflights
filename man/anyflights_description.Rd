@@ -3,19 +3,37 @@
 \docType{package}
 \name{anyflights_description}
 \alias{anyflights_description}
-\alias{anyflights_description-package}
-\title{Package: anyflights}
+\alias{_PACKAGE}
+\alias{anyflights_package}
+\title{anyflights: `nycflights13`-Like Data for Specified Years and Airports}
 \description{
-Download Flight Data For Specified Years and Airports
-}
-\details{
-The `anyflights` package supplies a set of functions to query air travel
-information for specified years and airports. The output of the wrapper
-function, `anyflights()`, is a folder of datasets similar to those
-found in the data-only package `nycflights13`.
-}
-\section{anyflights Functions}{
+\if{html}{\figure{logo.png}{options: align='right'}}
 
-anyflights(), get_airlines(), get_airports(), get_flights(), get_weather()
+The anyflights package supplies a set of functions to generate
+\code{nycflights13}-like datasets and data packages for specified years and 
+airports.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{http://github.com/simonpcouch/anyflights}
+  \item Report bugs at \url{https://github.com/simonpcouch/anyflights/issues}
 }
 
+}
+\author{
+\strong{Maintainer}: Simon P. Couch \email{simonpatrickcouch@gmail.com}
+
+Authors:
+\itemize{
+  \item Hadley Wickham \email{hadley@rstudio.com}
+}
+
+Other contributors:
+\itemize{
+  \item RStudio [copyright holder]
+  \item Jay Lee \email{jaylee@reed.edu} [contributor]
+  \item Dennis Irorere \email{denironyx@gmail.com} [contributor]
+}
+
+}

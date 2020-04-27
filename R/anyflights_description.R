@@ -1,21 +1,18 @@
-#' Package: anyflights
+#' anyflights: `nycflights13`-Like Data for Specified Years and Airports
 #'
-#' Download Flight Data For Specified Years and Airports
+#' @description 
 #'
-#' The `anyflights` package supplies a set of functions to query air travel
-#' information for specified years and airports. The output of the wrapper
-#' function, `anyflights()`, is a folder of datasets similar to those
-#' found in the data-only package `nycflights13`.
+#' \if{html}{\figure{logo.png}{options: align='right'}}
 #'
-#' @section anyflights Functions:
-#' anyflights(), get_airlines(), get_airports(), get_flights(), get_weather()
+#' The anyflights package supplies a set of functions to generate
+#' \code{nycflights13}-like datasets and data packages for specified years and 
+#' airports.
 #'
 #' @docType package
 #' @name anyflights_description
+#' @aliases anyflights_package
 #' @importFrom dplyr %>%
-#' @importFrom stats time
-#' @importFrom utils read.csv
-NULL
+"_PACKAGE"
 
 utils::globalVariables(c(".", "AirTime", "ArrDelay", "ArrTime", "CRSArrTime", 
                          "CRSDepTime", "Carrier", "Code", "DayofMonth", 
@@ -30,4 +27,14 @@ utils::globalVariables(c(".", "AirTime", "ArrDelay", "ArrTime", "CRSArrTime",
                          "read_csv", "relh", "row_number", "sched_dep_time", 
                          "sknt", "speed", "tailnum", "temp", "tmpf", "type", 
                          "type.acft", "type.eng", "tz", "tzone", "valid", 
-                         "visib", "vsby", "wind_speed", "year.mfr"))
+                         "visib", "vsby", "wind_speed", "year.mfr", 
+                         "Flight_Number_Reporting_Airline", 
+                         "Reporting_Airline", "Tail_Number", "time",
+                         "everything", "feel", "flight", "metar", "nnum", 
+                         "no_eng", "no_seats", "planes_lcl", "station", 
+                         "type_acft", "type_eng", "year", "Reporting_Airline",
+                         "arr_time", "sched_arr_time", "dewp", "engine",
+                         "engines", "humid", "manufacturer", "precip",
+                         "pressure", "seats", "time_hour", "wind_dir",
+                         "wind_gust"))
+

@@ -2,48 +2,72 @@
 % Please edit documentation in R/get_weather.R
 \name{get_weather}
 \alias{get_weather}
-\title{Generate a weather dataset for the specified year and airport}
+\title{Query nycflights13-Like Weather Data}
 \source{
 ASOS download from Iowa Environmental Mesonet,
   \url{https://mesonet.agron.iastate.edu/request/download.phtml}
 }
 \usage{
-get_weather(station, year, dir)
+get_weather(station, year, month = 1:12, dir = NULL)
 }
 \arguments{
-\item{station}{A character string---the airport of interest (use the FAA 
-LID airport code).}
+\item{station}{A character vector giving the origin US airports of interest
+(as the FAA LID airport code).}
 
-\item{year}{The year of interest, as an integer (unquoted). Currently, years 
-2015 and on are supported.}
+\item{year}{A numeric giving the year of interest. This argument is currently
+not vectorized, as dataset sizes for single years are significantly large.
+Information for the most recent year is usually available by February or 
+March in the following year.}
 
-\item{dir}{The folder for the dataset to be saved in}
+\item{month}{A numeric giving the month(s) of interest.}
+
+\item{dir}{An optional character string giving the directory
+to save datasets in. By default, datasets will not be saved to file.}
 }
 \value{
-A data frame with ~25,000 rows and 15 variables:
+A data frame with ~1k-25k rows and 15 variables:
 \describe{
-\item{origin}{Weather station. Named origin to facilitate merging with
-  flights data}
-\item{year,month,day,hour}{Time of recording}
-\item{temp,dewp}{Temperature and dewpoint in F}
-\item{humid}{Relative humidity}
-\item{wind_dir,wind_speed,wind_gust}{Wind direction (in degrees), speed
-  and gust speed (in mph)}
-\item{precip}{Precipitation, in inches}
-\item{pressure}{Sea level pressure in millibars}
-\item{visib}{Visibility in miles}
-\item{time_hour}{Date and hour of the recording as a \code{POSIXct} date}
+\item{\code{origin}}{Weather station. Named \code{origin} to facilitate 
+  merging with flights data}
+\item{\code{year, month, day, hour}}{Time of recording, UTC}
+\item{\code{temp, dewp}}{Temperature and dewpoint in F}
+\item{\code{humid}}{Relative humidity}
+\item{\code{wind_dir, wind_speed, wind_gust}}{Wind direction (in degrees), 
+  speed and gust speed (in mph)}
+\item{\code{precip}}{Precipitation, in inches}
+\item{\code{pressure}}{Sea level pressure in millibars}
+\item{\code{visib}}{Visibility in miles}
+\item{\code{time_hour}}{Date and hour of the recording as a \code{POSIXct} 
+  date, UTC}
 }
 }
 \description{
-Please note that, even with a strong internet connection, this function 
+This function generates a dataframe similar to the 
+\code{\link[nycflights13]{weather}} dataset from \code{nycflights13} 
+for any US airports and time frame. Please 
+note that, even with a strong internet connection, this function 
 may take several minutes to download relevant data.
 }
 \examples{
-\donttest{get_weather(station = "PDX", year = 2015, dir = tempdir())}
+
+# query weather at Portland International in June 2018
+\donttest{\dontrun{get_weather("PDX", 2018, 6)}}
+
+# ...or the original nycflights13 weather dataset
+\donttest{\dontrun{get_weather(c("JFK", "LGA", "EWR"), 2013)}}
+
+# use the dir argument to indicate the folder to 
+# save the data in as "weather.rda"
+\donttest{\dontrun{get_weather("PDX", 2018, 6, dir = tempdir())}}
+
 }
 \seealso{
-\code{\link{get_flights}} for flight data, 
-\code{\link{get_airports}} for airport data, \code{\link{get_airlines}} 
-for airline data, and \code{\link{anyflights}} for a wrapper function
+\code{\link{get_flights}} for flight data,
+\code{\link{get_airlines}} for airlines data,
+\code{\link{get_airports}} for airports data,
+\code{\link{get_planes}} for planes data,
+or \code{\link{anyflights}} for a wrapper function.
+
+Use the \code{\link{as_flights_package}} function to convert this dataset 
+to a data-only package.
 }
