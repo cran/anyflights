@@ -8,7 +8,7 @@ RITA, Bureau of transportation statistics,
  \url{http://www.transtats.bts.gov}
 }
 \usage{
-get_flights(station, year, month = 1:12, dir = NULL)
+get_flights(station, year, month = 1:12, dir = NULL, ...)
 }
 \arguments{
 \item{station}{A character vector giving the origin US airports of interest
@@ -23,6 +23,8 @@ March in the following year.}
 
 \item{dir}{An optional character string giving the directory
 to save datasets in. By default, datasets will not be saved to file.}
+
+\item{...}{Currently only used internally.}
 }
 \value{
 A data frame with ~1k-500k rows and 19 variables:
@@ -54,6 +56,13 @@ This function generates a dataframe similar to the
 for any US airport and time frame. Please 
 note that, even with a strong internet connection, this function 
 may take several minutes to download relevant data.
+}
+\details{
+This function currently downloads data for \emph{all} stations for each month
+supplied, and \emph{then} filters out data for relevant stations. Thus, 
+the recommended approach to download data for many airports is to supply 
+a vector of airport codes to the \code{station} argument rather than 
+iterating over many calls to \code{get_flights()}.
 }
 \examples{
 

@@ -183,7 +183,12 @@ skip_conditions <- function() {
 
 # get_flights utilities --------------------------------------------------
 
-download_month <- function(year, month, dir, flight_exdir) {
+download_month <- function(year, month, dir, flight_exdir, pb, diff_fn) {
+  
+  # update the progress bar with the month being downloaded
+  write_tick(pb = pb, paste0("  Downloading Flights Data for ", 
+                             months[month], 
+                             "..."))
   
   # put together the url for the relevant year and month
   fl_url <- make_flights_url(year, month)
@@ -207,6 +212,11 @@ download_month <- function(year, month, dir, flight_exdir) {
   flight_src <- paste0(flight_exdir, "/", flight_csv)
   flight_dst <- paste0(flight_exdir, "/", year, "-", month, ".csv")
   file.rename(flight_src, flight_dst)
+  
+  write_message(pb, 
+                paste0("Downloaded Flights Data for ", 
+                months[month]),
+                diff_fn)
 }
 
 get_flight_data <- function(path, station) {
@@ -336,7 +346,8 @@ process_month_arg <- function(month) {
   return(c(start_month, end_month, last_day))
 }
 
-get_weather_for_station <- function(station, year, dir, month_and_day_range) {
+get_weather_for_station <- function(station, year, dir, 
+                                    month_and_day_range, month) {
   
   # query setup
   weather_url <- "http://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?"
@@ -379,8 +390,42 @@ get_weather_for_station <- function(station, year, dir, month_and_day_range) {
   # delete the raw data
   unlink(paste0(dir, "/weather_", station, ".csv"))
   
-  # and return the data object :-)
-  weather_raw
+  # and return the tidied data object :-)
+  weather_raw %>%
+    # rename some columns
+    dplyr::rename(origin = station, 
+                  time = valid, 
+                  temp = tmpf, 
+                  dewp = dwpf, 
+                  humid = relh,
+                  wind_dir = drct, 
+                  wind_speed = sknt, 
+                  wind_gust = gust,
+                  precip = p01i, 
+                  pressure = mslp, 
+                  visib = vsby,
+                  feels_like = feel) %>%
+    # get rid of the metadata column
+    dplyr::select(-metar) %>%
+    # mutate some new useful columns
+    dplyr::mutate(time = as.POSIXct(strptime(time, "%Y-%m-%d %H:%M")),
+                  wind_speed = as.numeric(wind_speed) * 1.15078, # convert to mpg
+                  wind_gust = as.numeric(wind_speed) * 1.15078,
+                  year = as.integer(year),
+                  month = as.integer(lubridate::month(time)),
+                  day = lubridate::mday(time),
+                  hour = lubridate::hour(time),
+                  time_hour = ISOdatetime(year, month, day, hour, 0, 0)) %>%
+    # filter to only relevant rows - necessary for discontinuous month ranges
+    dplyr::filter(month %in% !!month) %>%
+    # remove duplicates / incompletes
+    dplyr::group_by(origin, month, day, hour) %>%
+    dplyr::filter(dplyr::row_number() == 1) %>%
+    dplyr::ungroup() %>%
+    # reorder columns to match the original dataset
+    dplyr::select(origin, year, month, day, hour, temp, dewp, 
+                  humid, wind_dir, wind_speed, wind_gust, precip,
+                  pressure, visib, time_hour)
 }
 
 
@@ -566,19 +611,16 @@ write_flights_documentation <- function(name) {
   # only write documentation for the relevant datasets
   needed_docs <- sysdata[which_data]
   
-  # create the man directory
-  dir.create(paste0(name, "/man"))
+  # create the .R files in R/
+  purrr::map(paste0(name, "/R/", names(needed_docs), ".R"), file.create)
   
-  # create the .Rd files in man/
-  purrr::map(paste0(name, "/man/", names(needed_docs), ".Rd"), file.create)
-  
-  # write the .Rd data to them
+  # write the .R data to them
   purrr::map2(needed_docs, 
-              paste0(name, "/man/", names(needed_docs), ".Rd"),
+              paste0(name, "/R/", names(needed_docs), ".R"),
               writeLines)
   
-  # make .R files out of the .Rds for easier documentation editing
-  Rd2roxygen::Rd2roxygen(name)
+  # generate .Rd documentation files
+  roxygen2::roxygenize(name)
   
   invisible(TRUE)
 }
@@ -638,6 +680,50 @@ check_given_data <- function(data_, name, ncols) {
               "for expected column names.")
   }
 }
+
+# progress updates utility -----------------------------------------
+
+# A wrapper around str_pad for easier defaults
+pad_text <- function(msg, width = 50) {
+  stringr::str_pad(msg, width, side = "right")
+}
+
+# call tick on pb with an update
+write_tick <- function(pb, update) {
+  pb$tick(tokens = list(what = paste0(pad_text(update))))
+}
+
+# call message on pb with the total elapsed time
+write_message <- function(pb, update, diff_fn) {
+  pb$message(paste0(pad_text(update, 
+                             50 - stringr::str_length(diff_fn())), 
+                    diff_fn()))
+}
+
+# create a function that returns the difference in time
+# from when the function was created, in seconds
+create_diff_from_start <- function() {
+  start <- Sys.time()
+  diff_from_start <- function() {
+    difftime(Sys.time(), start, units = "secs") %>%
+      as.numeric() %>%
+      round() %>%
+      as.character() %>%
+      paste0("s")
+  }
+}
+
+# convert month numbers to names for progress updates
+months <- c("January", "February", "March", "April",
+            "May", "June", "July", "August",
+            "September", "October", "November", "December")
+
+
+
+
+
+
+
 
 
 

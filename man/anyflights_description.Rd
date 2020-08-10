@@ -16,7 +16,7 @@ airports.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://github.com/simonpcouch/anyflights}
+  \item \url{https://github.com/simonpcouch/anyflights}
   \item Report bugs at \url{https://github.com/simonpcouch/anyflights/issues}
 }
 
@@ -24,14 +24,9 @@ Useful links:
 \author{
 \strong{Maintainer}: Simon P. Couch \email{simonpatrickcouch@gmail.com}
 
-Authors:
-\itemize{
-  \item Hadley Wickham \email{hadley@rstudio.com}
-}
-
 Other contributors:
 \itemize{
-  \item RStudio [copyright holder]
+  \item Hadley Wickham \email{hadley@rstudio.com} [contributor]
   \item Jay Lee \email{jaylee@reed.edu} [contributor]
   \item Dennis Irorere \email{denironyx@gmail.com} [contributor]
 }

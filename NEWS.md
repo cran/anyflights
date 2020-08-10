@@ -1,3 +1,13 @@
+## v 0.3.0
+
+----
+
+* Add progress updates to `anyflights()` and `get_flights()` (#4)
+* Clarify documentation on best practices for downloading data on many
+stations and years (#6)
+* Performance improvements to `get_weather()` (#8)
+* Data packages generated with `as_flights_package()` now pass R CMD check! (#9)
+
 ## v 0.2.0
 
 ----
