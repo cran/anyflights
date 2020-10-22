@@ -1,5 +1,5 @@
 
-# anyflights <a href='https://anyflights.netlify.com'><img src='https://raw.githubusercontent.com/simonpcouch/anyflights/master/figs/logo.png' align="right" height="300" /></a>
+# anyflights <a href='https://anyflights.netlify.app/'><img src='https://raw.githubusercontent.com/simonpcouch/anyflights/master/figs/logo.png' align="right" height="300" /></a>
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/anyflights)](https://cran.r-project.org/package=anyflights)
@@ -8,7 +8,7 @@ status](https://travis-ci.com/simonpcouch/anyflights.svg?branch=master)](https:/
 [![Codecov test
 coverage](https://codecov.io/gh/simonpcouch/anyflights/branch/master/graph/badge.svg)](https://codecov.io/gh/simonpcouch/anyflights?branch=master)
 [![Netlify
-Status](https://api.netlify.com/api/v1/badges/da4987b7-5dce-4f76-bd5d-a40b0eaeca5a/deploy-status)](https://anyflights.netlify.com/)
+Status](https://api.netlify.com/api/v1/badges/da4987b7-5dce-4f76-bd5d-a40b0eaeca5a/deploy-status)](https://anyflights.netlify.app/)
 
 The `anyflights` package supplies a set of functions to generate air
 travel data (and data packages\!) similar to

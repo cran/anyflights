@@ -1,7 +1,7 @@
 Package: anyflights
-Title: Query `nycflights13`-Like Air Travel Data for Given Years and
+Title: Query 'nycflights13'-Like Air Travel Data for Given Years and
         Airports
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
     person("Simon P.", "Couch", , "simonpatrickcouch@gmail.com", c("aut", "cre")),
     person("Hadley", "Wickham", , "hadley@rstudio.com", "ctb"),
@@ -22,11 +22,11 @@ RoxygenNote: 7.1.1
 Encoding: UTF-8
 Suggests: testthat, nycflights13, covr
 NeedsCompilation: no
-Packaged: 2020-08-07 15:43:29 UTC; simonpcouch
+Packaged: 2020-10-21 23:22:51 UTC; simonpcouch
 Author: Simon P. Couch [aut, cre],
   Hadley Wickham [ctb],
   Jay Lee [ctb],
   Dennis Irorere [ctb]
 Maintainer: Simon P. Couch <simonpatrickcouch@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-08-10 10:20:02 UTC
+Date/Publication: 2020-10-22 04:20:07 UTC
