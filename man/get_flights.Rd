@@ -5,7 +5,7 @@
 \title{Query nycflights13-Like Flights Data}
 \source{
 RITA, Bureau of transportation statistics,
- \url{http://www.transtats.bts.gov}
+ \url{https://www.bts.gov}
 }
 \usage{
 get_flights(station, year, month = 1:12, dir = NULL, ...)
@@ -63,6 +63,12 @@ supplied, and \emph{then} filters out data for relevant stations. Thus,
 the recommended approach to download data for many airports is to supply 
 a vector of airport codes to the \code{station} argument rather than 
 iterating over many calls to \code{get_flights()}.
+}
+\note{
+If you are repeatedly getting a timeout error when downloading flights,
+this could be because your download is taking longer than the default timeout
+R option. You can change the timeout value for your R session by running the
+code \code{option(timeout = timeout_value_in_seconds)} in your console.
 }
 \examples{
 
