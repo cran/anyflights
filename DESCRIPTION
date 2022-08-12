@@ -1,7 +1,7 @@
 Package: anyflights
 Title: Query 'nycflights13'-Like Air Travel Data for Given Years and
         Airports
-Version: 0.3.2
+Version: 0.3.3
 Authors@R: c(
     person("Simon P.", "Couch", , "simonpatrickcouch@gmail.com", c("aut", "cre")),
     person("Hadley", "Wickham", , "hadley@rstudio.com", "ctb"),
@@ -17,15 +17,15 @@ Imports: httr, dplyr, readr, utils, lubridate, vroom, glue, purrr,
         stringr, curl, usethis, roxygen2, progress
 URL: https://github.com/simonpcouch/anyflights
 BugReports: https://github.com/simonpcouch/anyflights/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Encoding: UTF-8
 Suggests: testthat, nycflights13, covr
 NeedsCompilation: no
-Packaged: 2021-11-24 15:00:32 UTC; simonpcouch
+Packaged: 2022-08-12 15:02:59 UTC; simoncouch
 Author: Simon P. Couch [aut, cre],
   Hadley Wickham [ctb],
   Jay Lee [ctb],
   Dennis Irorere [ctb]
 Maintainer: Simon P. Couch <simonpatrickcouch@gmail.com>
 Repository: CRAN
-Date/Publication: 2021-11-24 15:10:02 UTC
+Date/Publication: 2022-08-12 15:40:02 UTC

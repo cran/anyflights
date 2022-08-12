@@ -1,3 +1,7 @@
+## v 0.3.3
+
+* Fix HTML5 NOTEs on R devel.
+
 ## v 0.3.2
 
 * Add information about R session timeout option in the error message when
