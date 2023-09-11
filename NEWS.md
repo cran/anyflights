@@ -1,3 +1,10 @@
+## v 0.3.4
+
+* Fix typo in documentation about changing timeout in R session options when
+`utils::download.file()` fails (#20 by `@patrickvossler18`)
+
+* Resolve download issues with planes data.
+
 ## v 0.3.3
 
 * Fix HTML5 NOTEs on R devel.
